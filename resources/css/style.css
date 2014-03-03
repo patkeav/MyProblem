@@ -1,0 +1,64 @@
+/*
+Name:			MyProblem
+Description: 	Stylesheet for MyProblem
+Version: 		1.0
+Author: 		Patrick Keaveny and (hopefully) Tyson Reeder
+Author URI: 	http://www.patrickkeaveny.com
+
+*/
+
+/* Reset is good, but not needed right now.
+@import "reset.css";
+
+*/
+
+body {
+	margin: 0;
+}
+
+.hidden {
+	display:none;
+}
+.modal {
+	position: fixed;
+	z-index: 9999;
+	opacity: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	-webkit-transition: opacity 0.8s ease-in;
+	pointer-events: none; 
+	background: rgba(0,0,0,0.8);
+}
+.opacity { 
+	opacity: 1;
+	pointer-events: auto; }
+
+#id-form {
+	width: 500px;
+	position: relative;
+	margin: 100 auto; 
+	background: white;
+	color: black;
+}
+.red-alert {
+	color:red;
+	display:none;
+}
+.container {
+	width: 50%;
+	margin: 0 auto;
+}	
+#search-terms {
+	position: fixed;
+	right: 0;
+} 
+#problem-buttons { 
+	position: fixed; 
+	left: 0; 
+}
+.keyword-search {
+	padding: 10px;
+	outline: black solid thin;
+}
