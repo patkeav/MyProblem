@@ -14,11 +14,10 @@ Author URI: 	http://www.patrickkeaveny.com
 
 body {
 	margin: 0;
+	background-color: #fafafa;
 }
 
-.hidden {
-	display:none;
-}
+
 .modal {
 	position: fixed;
 	z-index: 9999;
@@ -31,10 +30,12 @@ body {
 	pointer-events: none; 
 	background: rgba(0,0,0,0.8);
 }
-.opacity { 
-	opacity: 1;
-	pointer-events: auto; }
 
+#header { 
+	margin: 0 auto;
+	text-align:center; 
+	}
+	
 #id-form {
 	width: 500px;
 	position: relative;
@@ -46,19 +47,150 @@ body {
 	color:red;
 	display:none;
 }
-.container {
+#problem {
+	text-align:center;
+}
+h1.problem-title {
+	margin: 10% auto 10px auto;
+	padding: 10px;
+	text-transform: uppercase;
+	text-align: center;
+}
+input#main-button {
+	margin: 0 auto;
+}
+input#problem-input {
 	width: 50%;
 	margin: 0 auto;
-}	
-#search-terms {
-	position: fixed;
-	right: 0;
-} 
-#problem-buttons { 
-	position: fixed; 
-	left: 0; 
+	padding:5px 10px;
+	background: #d5cdcb;
+	border-radius: 100px;
+	border: 1px solid white;
 }
-.keyword-search {
-	padding: 10px;
-	outline: black solid thin;
+button {
+	width:100px;
+    height:100px;
+    text-transform: uppercase;
+    border: 1px solid white;
+    border-radius: 50%;
+    font-size:16px;
+    display:inline-block;
+	margin: 0 auto;
+    text-align:center;
+}
+input#problem-input:focus {
+    outline: 2px solid white;
+}
+button#submit-problem {
+    background: #ec5832;
+    color:white;   
+}
+form#anonymous-check {
+	text-align:left;
+	width:50%;
+	margin:0 auto;
+}
+input[type="checkbox"] {
+    display:none;
+}
+#anonymous + label {
+    display:inline-block;
+    width:50%;
+    height:auto;
+    padding: 0px 0px 0px 20px;
+	vertical-align: middle;
+    background:url(images/checkbox.png) left center no-repeat;
+    cursor: pointer;
+    text-transform:uppercase;
+}
+#problem-buttons {
+	width: 200px;
+	text-align:center;
+}
+#problem-buttons h4 {
+	margin:0px;
+	padding: 0px;
+}
+#problem-buttons hr {
+	margin:0px;
+	padding: 0px;
+}
+#problem-buttons button {
+	width: 50px;
+	height: 50px;
+	font-size: 12px;
+	display:block;
+	margin: 0 auto;
+}
+#problem-buttons button.today {
+	background: #ec5832;
+    color:white;    
+}
+#problem-buttons button.this-week {
+	background: #f3cb85;
+    color:white;    
+}
+#problem-buttons button.this-month {
+	background: #161235;
+    color:white;    
+}
+#problem-buttons button.all {
+	background: #3daabf;
+    color:white;    
+}
+#display-problems table thead {
+	text-align: left;
+}
+#display-problems table tbody {
+	font-size: 16px;
+}
+#site-footer {
+	width: 100%;
+	height: auto;
+	margin: 0px auto;
+	padding: 50px 0px;
+	text-align: center; }
+ 
+	#site-footer li {
+		width: 40%;
+		height: 500px;
+		margin: 0 auto;
+		padding: 0;
+		display:inline-block;
+		vertical-align: top;
+		float:left;
+		font-size: 14px;
+	}
+ 
+	#site-footer h1 {
+		color: grey;
+		width: 100%;
+		font-size: 24px;
+		padding: 0;
+		margin: 0; 
+		text-align: center;}
+.fixed {
+	position: fixed;
+}
+.hidden {
+	display:none;
+}
+.align-left {
+	text-align: left;
+}
+.align-right {
+	text-align: right;
+}
+.align-center {
+	text-align: center;
+}
+.float-left {
+	float: left;
+}
+.float-right {
+	float: right;
+}
+.opacity { 
+	opacity: 1;
+	pointer-events: auto; 
 }

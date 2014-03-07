@@ -69,7 +69,7 @@ $new_index = $num_rows + 1;
 
 //prepares a sql statement to be inserted into the DB (protection from sql injection)    
 $query_result = $con->prepare('INSERT INTO `Problem_beta`(c1, Problem, keywords, twitter_handle, email_address, IP, unique_id) 
-									VALUES(:new_index, :problem, :key_words, :twitter, :email, :IP, :unique_id)');
+									VALUES(:new_index, :problem, :key_words, :twitter, :email, :IP, :unique)');
 			
 //executes sql statement
 $query_array = array(
@@ -78,12 +78,12 @@ $query_array = array(
 			'key_words' => $tags,
 			'twitter' => $twitter,
 			'email' => $email,
-			'IP' => $IP );
+			'IP' => $IP,
+			'unique' => $unique_id 
+			);
 $query_result->execute($query_array);
 
-
-
-echo "<input type='hidden' name='unique-id' id='unique-id' value=" . $unique_id; . " />";
+//echo "<input type='hidden' name='unique-id' id='unique-id' value=" . $unique_id; . " />";
 
 //close pdo connection
 $con = null;

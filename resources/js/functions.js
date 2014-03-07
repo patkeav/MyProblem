@@ -11,7 +11,7 @@ $(document).ready(function() {
 	
 	$("#main-button").click(function(event) { 
 		event.preventDefault()
-		showHide("#problem");
+		showHide(this, "Have a problem?", "#problem");
 	});
 	
 	$("a#dummy-link").click(function(event) {
@@ -33,6 +33,7 @@ $(document).ready(function() {
 
 		displaySearch(user_problem, search_div);
 		displayTableButtons(buttons_div);
+		
 	}
 	
 		p2 = new ProblemStream(display_location);
@@ -49,6 +50,7 @@ $(document).ready(function() {
 		if (this.checked) {
 			$('#id-form').addClass('hidden');
 		} 
+		//if it has, create the social media buttons 
 		else {
 			var problem = $("#problem-input").val();
 			var s1 = new SocialMedia(problem);
@@ -144,12 +146,14 @@ $(document).ready(function() {
 	});
 });
 
-		function showHide(element) {
+		function showHide(input, default_text, element) {
 			if ($(element).is(":visible")) {
 				$(element).hide();
+				$(input).val(default_text);
 			}
 			else {
 				$(element).show();
+				$(input).val("Return");
 			}
 		}
 		
@@ -314,7 +318,7 @@ function ProblemStream(location_div) {
 		this.location_div = location_div;
 		this.updateDB();
 		$(this.location_div).html(this.displayProblems());
-		fadeInAllProblems(bind_events(this.location_div + " table tbody"))
+		displayAllProblems(bind_events(this.location_div + " table tbody"));
 	};
 
 this.alternate_main = function(){
@@ -335,14 +339,11 @@ this.alternate_main = function(){
 				type: "POST",
 				async: false,
 				data: {problem: problem, IP: IP, email: email, twitter: twitter},
-				success:function(response){ 
-					alert('yep');
-					alert(response);
-					$("#unique-id-div").html(response);
-								},
+				success:function(response){
+				},
 				error:function(response){
-						alert("Error updating Database: " + response);
-						}
+					alert("Error updating Database: " + response);
+					}
 			}).done(function() {
 				
 			});
@@ -357,7 +358,6 @@ this.alternate_main = function(){
 				url:url,
 				async: false,
 				success:function(response){ 
-					//alert(response);
 					data = response;
 					},
 				error:function(response){alert("Error Displaying Problems: " + response)},
@@ -408,7 +408,7 @@ this.alternate_main = function(){
 	}
 	
 	function displayAllProblems(children) {
-		$('tr').show();
+		$('tr').removeClass('hidden');
 	}
 	
 	/**old function, may have to delete later:

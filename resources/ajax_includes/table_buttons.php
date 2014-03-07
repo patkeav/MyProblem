@@ -1,6 +1,6 @@
 <?php /**Table buttons script, for making buttons **/
 ?>
-<h3>See Problems from: </h3>
+<h4>See Problems from: </h4>
 <button class="today">Today</button>
 <button class="this-week">This Week</button>
 <button class="this-month">This Month</button>

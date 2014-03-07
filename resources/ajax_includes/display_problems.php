@@ -36,16 +36,16 @@ $months = array(
 // data table
 ?>
 
-<table> 
+<table class="table"> 
 	<thead>
 		<tr>
-			<td class="hidden">id</th>
+			<th class="hidden">id</th>
 			<th class="hidden">TimeStamp</th>
 			<th>Posted on:</th>
 			<th>Problem</th>
 			<th>Twitter</th>
 			<th>Contact User</th>
-			<th>Delete Problem</th>
+			<!--<th>Delete Problem</th>-->
 		</tr>
 	</thead>
 	<tbody>
@@ -90,16 +90,13 @@ $months = array(
 				<?php echo $months[$parsed['month']] . '-' . $parsed['day']; ?>">
 					<a href="#" id="dummy-link" data="problem_detail.php?problem=<?php echo $problem_string; ?>&date=<?php echo $time_stamp; ?>"
 						class="problem-detail-link">
-						<?php echo date("M jS, 'y @ g:ia(T)", strtotime($time_stamp)); ?>
+						<?php echo date("M. jS, Y ", strtotime($time_stamp)); ?>
 					</a>
 				</td>
-				<td>
-					<h3> 
-						<a href=".?problem=<?php 
-						echo $keyword_string  ?>">
-							My Problem is <?php echo $problem_string ?>
-						</a>
-					</h3>
+				<td class="main-text">
+					<a href=".?problem=<?php echo $keyword_string  ?>">
+						My Problem is <?php echo $problem_string ?>
+					</a>
 				</td>
 				<td>
 					<a target='_blank' href='https://www.twitter.com/<?php echo $row['twitter_handle'] ?>'>
@@ -113,6 +110,7 @@ $months = array(
 				</td>
 				<!--note, I used to have the option to delete a row with a button, it's not useful now, but might
 				be in the future. To do so use the following:
+				<?php echo date("M jS, 'y @ g:ia(T)", strtotime($time_stamp)); ?>
 				<td>
 					<input type="button" value="delete"
 						onClick="deleteRow(<?php echo $row_id; ?>);" />
