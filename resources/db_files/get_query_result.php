@@ -1,4 +1,4 @@
-<?php
+<?php /**Gets the result of the query to be used in subsequent files **/
 
 include('connect_to_db.php');
 	

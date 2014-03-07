@@ -72,12 +72,7 @@ $months = array(
 						}
 					echo $keyword_string;
 				?>">
-				<!--<td class="hidden row-id"><?php echo $row_id; ?></td>-->
-				<td class="hidden time-stamp">
-					<a href="http://www.problem_detail.php?problem=<?php echo $problem_string; ?>&date=<?php echo $time_stamp; ?>">
-						<?php echo $time_stamp; ?>
-					</a>
-				</td>
+				<td class="hidden time-stamp"><?php echo $time_stamp; ?></td>
 				<td class="date 
 				<?php
 				$date_diff = $now - (strtotime($time_stamp));
@@ -91,9 +86,10 @@ $months = array(
 					echo "this-month ";
 				} 
 			//for things posted today
-				?>all
+				?> all
 				<?php echo $months[$parsed['month']] . '-' . $parsed['day']; ?>">
-					<a href="problem_detail.php?problem=<?php echo $problem_string; ?>&date=<?php echo $time_stamp; ?>">
+					<a href="#" id="dummy-link" data="problem_detail.php?problem=<?php echo $problem_string; ?>&date=<?php echo $time_stamp; ?>"
+						class="problem-detail-link">
 						<?php echo date("M jS, 'y @ g:ia(T)", strtotime($time_stamp)); ?>
 					</a>
 				</td>
@@ -121,8 +117,7 @@ $months = array(
 					<input type="button" value="delete"
 						onClick="deleteRow(<?php echo $row_id; ?>);" />
 				</td>
-				-->
-				
+				-->	
 			</tr>
 			<?php
 		  }

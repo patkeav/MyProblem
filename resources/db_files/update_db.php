@@ -65,10 +65,8 @@ $query_result = $con->prepare($query_default);
 $query_result->execute();	
 			
 $num_rows = $query_result->rowCount();
-//mysqli_num_rows($query_result);
 $new_index = $num_rows + 1;
-//echo $problem;
-//echo 'new index: ' . $new_index . ' problem: ' . $problem . ' keywords: ' . $key_words . ' twitter: ' . $twitter . ' email: ' . $email . ' ' . $IP;
+
 //prepares a sql statement to be inserted into the DB (protection from sql injection)    
 $query_result = $con->prepare('INSERT INTO `Problem_beta`(c1, Problem, keywords, twitter_handle, email_address, IP, unique_id) 
 									VALUES(:new_index, :problem, :key_words, :twitter, :email, :IP, :unique_id)');
@@ -90,45 +88,4 @@ echo "<input type='hidden' name='unique-id' id='unique-id' value=" . $unique_id;
 //close pdo connection
 $con = null;
 
-//print_r($query_array);
-			
-// . $new_index . ",'" . $problem . "','" . $twitter . "','" . $email . "');";
-/*$stmt = $dbConnection->prepare("INSERT INTO `Problem_beta` (c1, Problem, twitter_handle, email_address) 
-			VALUES(" . $new_index . ",'" . $problem . "','" . $twitter . "','" . $email . "');");
-$stmt->bind_param('s',$name);
-
-$stmt->execute();
-
-$query_result = $stmt->get_result();*/
-
-
-//$query_result = mysqli_query($con,$values);
-/**
-if (!$query_result) 
-	{
-	die('Error' . mysqli_error($con));
-	}
-
-echo "<table border='1'>
-<tr>
-<th>Firstname</th>
-<th>Lastname</th>
-<th>Age</th>
-<th>Hometown</th>
-<th>Job</th>
-</tr>";
-
-while($row = mysqli_fetch_array($query_result))
-  {
-  echo "<tr>";
-  echo "<td>" . $row['c1'] . "</td>";
-  echo "<td>" . $row['c2'] . "</td>";
-  echo "<td>" . $row['c3'] . "</td>";
-  echo "<td>" . $row['c4'] . "</td>";
-  echo "</tr>";
-  }
-echo "</table>";
-
-mysqli_close($con);
-**/
 ?>

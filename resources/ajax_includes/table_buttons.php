@@ -27,11 +27,13 @@
 	<option value="<?php echo $months[$i]; ?>"><?php echo $months[$i]; ?></option>
 	<?php } ?>
 </select>
+
 <select id="option-day">
 	<?php for ($i=1;$i<=30;$i++) { ?>
 	<option value="<?php echo $i; ?>"><?php echo $i; ?></option>
 	<?php } ?>
 </select>
+
 <input type="button" value="Go" id="specific-date" />
 <br />
 

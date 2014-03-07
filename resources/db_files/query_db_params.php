@@ -1,4 +1,4 @@
-<?php /** Checks the Database for new entries **/
+<?php /** Checks the Database for entries based on input parameters **/
 
 $params = $_POST["params"];
 
@@ -9,6 +9,7 @@ $query_alternate = '';
 $execute_array = array();
 $i = 0;
 
+//takes out each parameter and processes it
 foreach ($params as $param) {
 	++$i;
 	if (!$param == '') {
@@ -24,6 +25,7 @@ foreach ($params as $param) {
 	}
 }
 
+//helper function for sanitizing the text, don't want those dang scammers to have their way with me!
 function cleanAndSanitize($input) {	
 	$search = array(
     '@<script[^>]*?>.*?</script>@si',   // Strip out javascript
@@ -44,5 +46,5 @@ function cleanAndSanitize($input) {
 
 $query_params = true;
 
-
+// display the problem stream after all the parameters have been processed
 include('../ajax_includes/display_problems.php');

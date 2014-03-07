@@ -1,11 +1,10 @@
 <?php
+// This file is the template for the problem detail
 
 $problem = $_GET["problem"];
 $date = $_GET["date"];
 
 ?>
-
-
 <html>
 	<head>
 		<link href="resources/css/style.css" rel="stylesheet" type="text/css" />
