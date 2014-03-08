@@ -16,19 +16,10 @@ body {
 	margin: 0;
 	background-color: #fafafa;
 }
-
-
+a:hover {
+	text-decoration: none;
+}
 .modal {
-	position: fixed;
-	z-index: 9999;
-	opacity: 0;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	-webkit-transition: opacity 0.8s ease-in;
-	pointer-events: none; 
-	background: rgba(0,0,0,0.8);
 }
 
 #header { 
@@ -36,19 +27,14 @@ body {
 	text-align:center; 
 	}
 	
-#id-form {
-	width: 500px;
-	position: relative;
-	margin: 100 auto; 
-	background: white;
-	color: black;
-}
 .red-alert {
 	color:red;
 	display:none;
 }
+input:focus, button:focus { outline: none; }
 #problem {
 	text-align:center;
+	display:none;
 }
 h1.problem-title {
 	margin: 10% auto 10px auto;
@@ -103,8 +89,14 @@ input[type="checkbox"] {
     cursor: pointer;
     text-transform:uppercase;
 }
+table#buttons-table  {
+	
+}
+form#email-form input {
+	width:250px;
+}
 #problem-buttons {
-	width: 200px;
+	margin-left:-175px;
 	text-align:center;
 }
 #problem-buttons h4 {
@@ -121,6 +113,8 @@ input[type="checkbox"] {
 	font-size: 12px;
 	display:block;
 	margin: 0 auto;
+	vertical-align:center;
+	text-align:center;
 }
 #problem-buttons button.today {
 	background: #ec5832;
@@ -158,7 +152,6 @@ input[type="checkbox"] {
 		padding: 0;
 		display:inline-block;
 		vertical-align: top;
-		float:left;
 		font-size: 14px;
 	}
  
@@ -169,6 +162,20 @@ input[type="checkbox"] {
 		padding: 0;
 		margin: 0; 
 		text-align: center;}
+		
+a.email-cell {
+	border: 1px solid white;
+    border-radius: 100px;
+    padding: 5px 20px;
+    color:white;
+    background-color: #d5cdcb;
+    vertical-align:center;
+}
+a.email-cell:hover {
+    background-color: #3daabf;
+    color:white;
+    text-decoration: none;
+}
 .fixed {
 	position: fixed;
 }

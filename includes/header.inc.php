@@ -40,6 +40,7 @@ $value_text = '';
 <script src="resources/js/jquery-ur.min.js" type="text/javascript"></script>
 <script src="resources/js/google-js-api.min.js" type="text/javascript"></script>
 <script src="http://www.google.com/jsapi" type="text/javascript"></script> 
+<script src='resources/js/bootstrap.min.js'></script>
 
 <html>
 	<head>
@@ -67,28 +68,11 @@ $value_text = '';
 						<br />
 				
 						<form id="anonymous-check"> 
-							<input type="checkbox" name="anonymous" value="anonymous" id="anonymous" checked> 
+							<input type="button" name="anonymous" value="anonymous" id="anonymous" data-toggle="modal" data-target="#modal-media"> 
 							<label for="anonymous">Remain Anonymous</label>	
 						</form><!--checkbox-->		
 						<br />
-						<form id="id-form" class="hidden opacity" style="margin: 0;">
-				
-							@<input type="text" name="twitter-handle" id="twitter-handle" placeholder="Twitter Handle" /><!--twitter-handle-->
-							<br />
-							<input type="text" name="email-address" id="email-address" placeholder="Email Address" /><!--email-address-->
-							<br />
-							<div id="twitter-box"></div><!--/#twitter-box-->
-					
-							<a href="#" id="facebook-link">Post To Facebook</a>
-							<div id="facebook-box"></div><!--/#facebook-box-->
-					
-							<a href="#" id="tumblr-link"> Post on Tumblr</a> <br />
-								<input type="text" placeholder="Tumblr Blog" id="tumblr-name" />
-								<div class="red-alert">This field can not be empty</div>
-							<div id="tumblr-box"></div><!--/#tumblr-box-->
-					
-						</form><!--#id-form-->
-				
+						
 					<?php } else { ?>
 						<div id="problem-header">
 							<h1>

@@ -1,27 +1,27 @@
 <?php include('includes/header.inc.php');
 ?>	
 		
-		<div id="main" class="row-fluid">
-			<div class="col-lg-12">
-				<div id="display" class="">
-					<div class="col-lg-2">
-						<table class="table">
-							<thead>
-								<tr>
-									<th>See Problems From:</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td><div class="button-group" id="problem-buttons"></div><!--#problem-buttons--> </td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-					<div class="col-lg-10">
-						<div id="display-problems"></div><!--#display-problems-->
-					</div>
-				</div><!--#display-->
+		<div id="main" class="row">
+			<div class="col-lg-2">
+				<div class=" button-group" id="problem-buttons"></div><!--#problem-buttons--> 
+			</div>
+				<div id="display-problems" class="col-lg-10" >
+					<table class="table"> 
+						<thead>
+							<tr>
+								<th class="hidden">id</th>
+								<th class="hidden">TimeStamp</th>
+								<th>Posted on:</th>
+								<th>Problem</th>
+								<th>Twitter</th>
+								<th>Contact User</th>
+								<!--<th>Delete Problem</th>-->
+							</tr>
+						</thead>
+						<tbody id="main-table"> 
+						</tbody>
+					</table>
+				</div><!--#display-problems-->
 			</div><!--/.col-lg-12-->
 		</div><!--/.row-fluid-->
 		

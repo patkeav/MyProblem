@@ -83,8 +83,6 @@ $query_array = array(
 			);
 $query_result->execute($query_array);
 
-//echo "<input type='hidden' name='unique-id' id='unique-id' value=" . $unique_id; . " />";
-
 //close pdo connection
 $con = null;
 

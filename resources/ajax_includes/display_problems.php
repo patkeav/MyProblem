@@ -34,23 +34,9 @@ $months = array(
 );
 
 // data table
-?>
-
-<table class="table"> 
-	<thead>
-		<tr>
-			<th class="hidden">id</th>
-			<th class="hidden">TimeStamp</th>
-			<th>Posted on:</th>
-			<th>Problem</th>
-			<th>Twitter</th>
-			<th>Contact User</th>
-			<!--<th>Delete Problem</th>-->
-		</tr>
-	</thead>
-	<tbody>
-	<?php	
+	
 //fetches data from individual rows in the query 
+		
 		while($row = $query_result->fetch()) {
 			$row_id = $row['unique_id']; 
 			$problem_string = $row['Problem'];
@@ -104,8 +90,8 @@ $months = array(
 					</a>
 				</td>
 				<td>
-					<a target='_blank' href='mailto:<?php echo $row['email_address'] ?>'>
-						<?php echo $row['email_address'] ?>
+					<a target="_blank" href="mailto:<?php echo $row['email_address'] ?>" class="email-cell">
+						Reply
 					</a>
 				</td>
 				<!--note, I used to have the option to delete a row with a button, it's not useful now, but might
@@ -120,8 +106,7 @@ $months = array(
 			<?php
 		  }
 		  ?>
-	</tbody>
-</table>
-<?php
+		  <?php
+
 //close pdo connection
 $con = null;

@@ -3,12 +3,11 @@ $(document).ready(function() {
 	var user_IP;
 	var user_twitter;
 	var user_email; 
-	var display_location = "#display-problems";
+	var display_location = "table tbody#main-table";
 	var search_div = "#search-terms";
 	var buttons_div = "#problem-buttons";
 	
 	$("#problem").hide();
-	
 	$("#main-button").click(function(event) { 
 		event.preventDefault()
 		showHide(this, "Have a problem?", "#problem");
@@ -31,7 +30,6 @@ $(document).ready(function() {
 		var last_entry = $(display_location + " table tbody tr td.time-stamp").first(); 
 		$("#last_entry").val(last_entry.html());
 
-		displaySearch(user_problem, search_div);
 		displayTableButtons(buttons_div);
 		
 	}
@@ -47,11 +45,7 @@ $(document).ready(function() {
 	
 	//check if the anonymous button is selected
 	$('#anonymous').change(function() {
-		if (this.checked) {
-			$('#id-form').addClass('hidden');
-		} 
 		//if it has, create the social media buttons 
-		else {
 			var problem = $("#problem-input").val();
 			var s1 = new SocialMedia(problem);
 			s1.tweetButton();				
@@ -72,8 +66,7 @@ $(document).ready(function() {
 					s1.tumblrButton(blogname);
 				}
 			});
-		}
-	});
+		});
 
 // the main code block that handles the problem output, and all necessary function calls
 	$('#submit-problem').click(function(event) { 
@@ -98,11 +91,10 @@ $(document).ready(function() {
 			
 			var search_div = "#search-terms";
 			var buttons_div = "#problem-buttons";
-			displaySearch(user_problem, search_div);
 			displayTableButtons(buttons_div);
 			var unique_id = $("#unique-id").val();
 			setTimeout(function() {
-				deleteRow(unique_id);
+				//deleteRow(unique_id);
 			  }, 5000);
 		}
 	});
@@ -289,7 +281,7 @@ $(document).ready(function() {
 						alert("Error Deleting Row " + response);
 						}
 		}).done(function() {
-			p2 = new ProblemStream("#display-problems");
+			p2 = new ProblemStream("table tbody#main-table");
 			p2.alternate_main(); 
 		});
 	}
@@ -305,8 +297,6 @@ function ProblemStream(location_div) {
 	this.location_div = location_div;
 	this.update_link = "resources/db_files/update_db.php";
 	this.display_link = "resources/ajax_includes/display_problems.php";
-	this.r1 = $.Deferred();
-	this.r2 = $.Deferred();
 	this.elements = new Array();
 
 //the main method	
@@ -318,12 +308,15 @@ function ProblemStream(location_div) {
 		this.location_div = location_div;
 		this.updateDB();
 		$(this.location_div).html(this.displayProblems());
-		displayAllProblems(bind_events(this.location_div + " table tbody"));
+		showAllProblems();
+		//fadeInAllProblemsFast(bind_events(this.location_div));
+		//showAllProblems(bind_events(this.location_div + " table tbody"));
 	};
 
 this.alternate_main = function(){
 	$(this.location_div).html(this.displayProblems());
-	displayAllProblems(bind_events(this.location_div + " table tbody"));
+	showAllProblems();
+	
 };
 
 /**helper method for updating the database **/
@@ -366,6 +359,7 @@ this.alternate_main = function(){
 		return data; 
 	};
 		
+	/** function for binding elements together, with some help from stackoverflow user "face". Thanks buddy!**/	
 	function bind_events(data) {
 		var elements_array = new Array();
 		$(data).children().each(function() {
@@ -398,16 +392,36 @@ this.alternate_main = function(){
 		this.elements = elements;
 	};
 	
-	/**helper method for taking out each element in an array and recursively fading them in **/
+	/**FAST helper method for taking out each element in an array and recursively fading them in **/
 
-	function fadeInAllProblems(children) {
+	function fadeInAllProblemsFast(children) {
 		var current = children.shift();
 		$(current).fadeIn(1000, function() {
-			fadeInAllProblems(children)
+			fadeInAllProblemsFast(children)
 		});
 	}
 	
-	function displayAllProblems(children) {
+	/**MEDIUM helper method for taking out each element in an array and recursively fading them in **/
+	
+	function fadeInAllProblemsMedium(children) {
+		var current = children.shift();
+		$(current).fadeIn(1000, function() {
+			fadeInAllProblemsMedium(children)
+		});
+	}
+	
+	/**SLOW helper method for taking out each element in an array and recursively fading them in **/
+	
+	function fadeInAllProblemsSlow(children) {
+		var current = children.shift();
+		$(current).fadeIn(5000, function() {
+			fadeInAllProblemsSlow(children)
+		});
+	}
+	
+	/**helper method for showing all elements without fading in**/
+	
+	function showAllProblems(children) {
 		$('tr').removeClass('hidden');
 	}
 	

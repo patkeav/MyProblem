@@ -1,0 +1,5 @@
+[07-Mar-2014 17:03:44 America/Chicago] PHP Warning:  PDO::__construct(): The server requested authentication method unknown to the client [mysql_old_password] in /home/patrickk/public_html/new/MyProblem/resources/db_files/connect_to_db.php on line 23
+[07-Mar-2014 17:03:44 America/Chicago] PHP Fatal error:  Call to a member function prepare() on a non-object in /home/patrickk/public_html/new/MyProblem/resources/ajax_includes/display_problems.php on line 16
+[07-Mar-2014 17:11:13 America/Chicago] PHP Fatal error:  Call to a member function prepare() on a non-object in /home/patrickk/public_html/new/MyProblem/resources/ajax_includes/display_problems.php on line 16
+[07-Mar-2014 17:11:53 America/Chicago] PHP Fatal error:  Call to a member function prepare() on a non-object in /home/patrickk/public_html/new/MyProblem/resources/ajax_includes/display_problems.php on line 16
+[07-Mar-2014 17:21:20 America/Chicago] PHP Fatal error:  Call to a member function prepare() on a non-object in /home/patrickk/public_html/new/MyProblem/resources/ajax_includes/display_problems.php on line 16
