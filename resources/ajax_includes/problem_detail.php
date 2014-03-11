@@ -5,11 +5,11 @@ $problem = $_GET["problem"];
 $date = $_GET["date"];
 $IP = $_GET["IP"];
 
-if ($IP == "0.0") {
-	$IP = $IP . "not the same";
+if ($IP !== "0.0") {
+	$same = true;
 }
 else {
-	$IP = "the same";
+	$same = false; 
 }
 
 ?>
@@ -23,9 +23,12 @@ else {
 		<h2> <?php echo $problem; ?> </h2>
 	</div>
 	<div> This problem was posted on <?php echo $date; ?> </div>
-	<?php if ($IP == "the same") { ?>
-		<div> Care to explain further? <br />
-			<input type="textarea" name="details" id="details" />
+	<hr>
+	<?php if ($same) { ?>
+		<div> 
+		<h4>Care to explain further?</h4>
+		<br />
+			<input type="textarea" name="details" id="details" class="form-control" />
 		</div>
 	<?php } ?>
 	</body>

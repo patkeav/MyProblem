@@ -50,7 +50,7 @@ $months = array(
 				$IP = $row['IP'];  
 			}
 			else {
-				$IP = "user_ip = " . $user_IP . " db IP = " . $row['IP']; 
+				$IP = "0.0"; 
 			}
 			$key_words = explode(' ', ($row['keywords']));
 			$parsed = date_parse($time_stamp);
@@ -69,7 +69,8 @@ $months = array(
 						}
 					echo $keyword_string;
 				?>">
-				<td class="hidden time-stamp"><?php echo $time_stamp; ?></td>
+				<td class="hidden skip"><?php echo $IP; ?></td>
+				<td class="hidden skip"><?php echo $time_stamp; ?></td>
 				<td class="date 
 				<?php
 				$date_diff = $now - (strtotime($time_stamp));
@@ -119,7 +120,6 @@ $months = array(
 						onClick="deleteRow(<?php echo $row_id; ?>);" />
 				</td>
 				-->	
-				<td class="hidden internet-protocol"><?php echo $IP; ?></td>
 			</tr>
 			<?php
 		  }

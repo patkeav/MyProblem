@@ -30,7 +30,6 @@ $(document).ready(function() {
 	var user_problem;
 	var user_IP = $("#ip-address").val();
 	console.log("user IP is " + user_IP);
-	alert("whatever");
 	var user_twitter;
 	var user_email; 
 	var display_location = "table tbody#main-table";
@@ -271,7 +270,7 @@ $(document).ready(function() {
 	
 	function getNearest(value, location_div) {
 			$(location_div).not(value).addClass('hidden');
-			$(location_div + value).parent().closest('tr').find('td').not('.time-stamp').removeClass('hidden');
+			$(location_div + value).parent().closest('tr').find('td').not('.skip').removeClass('hidden');
 	}
 	
 /**helper method for checking the Database for new entries

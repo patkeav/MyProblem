@@ -79,7 +79,10 @@
 						<h4 class="modal-title">Specific Details for this problem:</h4>
 					</div><!--/modal-header--> 
 					<div class="modal-body"></div><!--modal-body-->
-					<div class="modal-footer"> 
+					<div class="modal-footer">
+					<?php if ($same) { ?>
+						<a href="#" id="media-modal-nevermind" class="btn btn-danger" data-dismiss="modal">Close</a> 
+					<?php } ?> 
 						<a href="#" id="media-modal-nevermind" class="btn btn-danger" data-dismiss="modal">Close</a> 
 					</div><!--/modal-footer--> 
 				</div><!--/modal-content--> 

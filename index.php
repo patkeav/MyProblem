@@ -8,11 +8,11 @@
 							<tr>
 								<th class="hidden">id</th>
 								<th class="hidden">TimeStamp</th>
+								<th class="hidden">IP</th>
 								<th>Posted on:</th>
 								<th>Problem</th>
 								<th>Twitter</th>
 								<th>Contact User</th>
-								<th class="hidden">IP</th>
 								<!--<th>Delete Problem</th>-->
 							</tr>
 						</thead>
