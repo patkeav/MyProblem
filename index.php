@@ -1,11 +1,8 @@
 <?php include('includes/header.inc.php');
 ?>	
-		
 		<div id="main" class="row">
-			<div class="col-lg-2">
-				<div class=" button-group" id="problem-buttons"></div><!--#problem-buttons--> 
-			</div>
-				<div id="display-problems" class="col-lg-10" >
+				<div id="display-problems" class="col-lg-12" >
+					<div class=" button-group" id="problem-buttons"></div><!--#problem-buttons--> 
 					<table class="table"> 
 						<thead>
 							<tr>
@@ -15,6 +12,7 @@
 								<th>Problem</th>
 								<th>Twitter</th>
 								<th>Contact User</th>
+								<th class="hidden">IP</th>
 								<!--<th>Delete Problem</th>-->
 							</tr>
 						</thead>

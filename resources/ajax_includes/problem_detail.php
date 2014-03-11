@@ -3,6 +3,14 @@
 
 $problem = $_GET["problem"];
 $date = $_GET["date"];
+$IP = $_GET["IP"];
+
+if ($IP == "0.0") {
+	$IP = $IP . "not the same";
+}
+else {
+	$IP = "the same";
+}
 
 ?>
 <html>
@@ -15,5 +23,10 @@ $date = $_GET["date"];
 		<h2> <?php echo $problem; ?> </h2>
 	</div>
 	<div> This problem was posted on <?php echo $date; ?> </div>
+	<?php if ($IP == "the same") { ?>
+		<div> Care to explain further? <br />
+			<input type="textarea" name="details" id="details" />
+		</div>
+	<?php } ?>
 	</body>
 </html>

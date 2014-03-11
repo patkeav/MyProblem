@@ -1,6 +1,9 @@
 <?php /** Displays the entries from the Database **/
 include('../db_files/connect_to_db.php'); 
 
+$user_IP = $_POST["IP"];
+
+
 //checks to see if the display problems request came with parameters
 if ($query_params) {
 	$query_result = $con->prepare("SELECT * FROM `Problem_beta`  
@@ -8,6 +11,7 @@ if ($query_params) {
 									ORDER BY Date DESC;");
 	
 	$query_result->execute($execute_array);
+	
 }
 //if not, do the default query
 else {
@@ -33,7 +37,7 @@ $months = array(
 	12 => 'december',
 );
 
-// data table
+// data table 
 	
 //fetches data from individual rows in the query 
 		
@@ -41,11 +45,18 @@ $months = array(
 			$row_id = $row['unique_id']; 
 			$problem_string = $row['Problem'];
 			$time_stamp = $row['Date'];  
+			$IP;
+			if ($user_IP == $row['IP']) { 
+				$IP = $row['IP'];  
+			}
+			else {
+				$IP = "user_ip = " . $user_IP . " db IP = " . $row['IP']; 
+			}
 			$key_words = explode(' ', ($row['keywords']));
 			$parsed = date_parse($time_stamp);
 			
 			?>
-			<tr class="hidden 
+			<tr class="hidden
 				<?php 
 					$i = 1;
 					$keyword_string = '';
@@ -73,9 +84,9 @@ $months = array(
 				} 
 			//for things posted today
 				?> all
-				<?php echo $months[$parsed['month']] . '-' . $parsed['day']; ?>">
-					<a href="#" id="dummy-link" data="problem_detail.php?problem=<?php echo $problem_string; ?>&date=<?php echo $time_stamp; ?>"
-						class="problem-detail-link">
+				<?php echo $months[$parsed['month']] . '-' . $parsed['day'] . '-' . $parsed['year']; ?>">
+					<a href="#" id="dummy-link" data="problem_detail.php?problem=<?php echo $problem_string; ?>&date=<?php echo $time_stamp; ?>&IP=<?php echo $IP; ?>"
+						data-toggle="modal" data-target="#detail-modal" class="problem-detail-link">
 						<?php echo date("M. jS, Y ", strtotime($time_stamp)); ?>
 					</a>
 				</td>
@@ -90,9 +101,15 @@ $months = array(
 					</a>
 				</td>
 				<td>
-					<a target="_blank" href="mailto:<?php echo $row['email_address'] ?>" class="email-cell">
-						Reply
-					</a>
+					<?php
+					if (strlen($row['email_address']) > 2 ) {
+					?>
+						<a target="_blank" href="mailto:<?php echo $row['email_address'] ?>" class="email-cell">
+							Reply
+						</a>
+					<?php
+					}
+					?>
 				</td>
 				<!--note, I used to have the option to delete a row with a button, it's not useful now, but might
 				be in the future. To do so use the following:
@@ -102,6 +119,7 @@ $months = array(
 						onClick="deleteRow(<?php echo $row_id; ?>);" />
 				</td>
 				-->	
+				<td class="hidden internet-protocol"><?php echo $IP; ?></td>
 			</tr>
 			<?php
 		  }

@@ -1,30 +1,55 @@
+$(document).on("click", "#main-table a#dummy-link.problem-detail-link", function(event) {
+		
+		event.preventDefault();
+		var url = $(this).attr('data');
+		url = "resources/ajax_includes/" + url;
+		displayProblemDetail(url, "#detail-modal .modal-body");
+	});
+	var option_day;
+	var option_month;
+	var option_year;
+	$(document).on("change", "option", function() {
+		alert('clicked');
+		option_day = ($(this).attr('value'));
+	});
+	$(document).on("change", "#option-month option", function() {
+		option_month = ($(this).attr('value'));
+	});
+	$(document).on("change", "#option-year option", function() {
+		option_year = ($(this).attr('value'));
+		alert(option_year);
+	});
+	
+	$(document).on("click", "#specific-date", function() {
+		var specific_date = '.' + option_month + '-' + option_day + '-' + option_year;
+		alert(specific_date);
+		getNearest(specific_date, "#display-problems table td");
+	});
+	
 $(document).ready(function() {
 	var user_problem;
-	var user_IP;
+	var user_IP = $("#ip-address").val();
+	console.log("user IP is " + user_IP);
+	alert("whatever");
 	var user_twitter;
 	var user_email; 
 	var display_location = "table tbody#main-table";
 	var search_div = "#search-terms";
 	var buttons_div = "#problem-buttons";
-	
-	$("#problem").hide();
+	 
 	$("#main-button").click(function(event) { 
 		event.preventDefault()
 		showHide(this, "Have a problem?", "#problem");
 	});
 	
-	$("a#dummy-link").click(function(event) {
-		alert('yep');
-		event.preventDefault();
-		
-	});
+
 		//alert('yep');
 		//var url = $(this).attr('data');
 		//alert(url)
 	//});
 	
 	if ($("#problem_param").val()) {
-		var user_problem = $('#problem_param').val()
+		var user_problem = $('#problem_param').val();
 	
 		displayProblemsParams(user_problem, display_location); 
 		var last_entry = $(display_location + " table tbody tr td.time-stamp").first(); 
@@ -35,7 +60,7 @@ $(document).ready(function() {
 	}
 	
 		p2 = new ProblemStream(display_location);
-		p2.alternate_main(); 
+		p2.alternate_main(user_IP); 
 		var last_entry = $(display_location + " table tbody tr td.time-stamp").first(); 
 		$("#last_entry").val(last_entry.html());
 		
@@ -77,9 +102,8 @@ $(document).ready(function() {
 			$('#id-form').addClass('hidden');
 			// values that will be added to the DB
 			var user_problem = $("#problem-input").val();
-			var user_IP = $("#ip-address").val();
 			var user_twitter = $("#twitter-handle").val();
-			var user_email = $("#email-address").val(); 
+			var user_email = $("#email-address1").val() + "@" + $("#email-address2").val(); 
 		
 			// create the ProblemStream object
 			var p1 = new ProblemStream(display_location);
@@ -116,28 +140,22 @@ $(document).ready(function() {
 			$('#submit-problem').click();
 		}
 	});
-	
+	$('#media-modal-dismiss').click(function(event) {
+		event.preventDefault();
+		$('#submit-problem').click();
+	});
 	$("#problem-buttons").on("click", "button", function() { 
 		var button_class = '.' + $(this).attr('class');
 		getNearest(button_class, "#display-problems table td");
 	});
-	var option_day;
-	var option_month;
-	$("#option-day").on("change", "option", function() {
-		alert('clicked');
-		option_day = ($(this).attr('value'));
-	});
-	$("#option-month").on("change", "option", function() {
-		option_month = ($(this).attr('value'));
-	});
-	
-	$("#specific-date").on("click", "#specific-date", function() {
-		var specific_date = '.' + option_month + '-' + option_day;
-		alert(specific_date);
-		getNearest(specific_date, "#display-problems table td");
-	});
 });
 
+/**helper method for handling click events and showing/hiding elements
+	@param input = the element value
+	@param default_text = the default element value
+	@param element = the element to target
+**/	
+	
 		function showHide(input, default_text, element) {
 			if ($(element).is(":visible")) {
 				$(element).hide();
@@ -166,12 +184,15 @@ $(document).ready(function() {
 			}
 		}
 		
-/**helper method for getting the problem detail**/			
+/**helper method for getting the problem detail
+	@param link = the link to go to
+	@param location_div = the div to put the result into
+**/			
 		
-	function displayProblemDetail(problem, location_div) {
+	function displayProblemDetail(link, location_div) {
+		var url = link;
 		$.ajax({
-			url: 'resources/ajax_includes/keywords.php',
-			data: {problem: problem},
+			url: url,
 			success: function(response) {
 				$(location_div).html(response);
 			}
@@ -180,8 +201,10 @@ $(document).ready(function() {
 		});
 	}	
 
-/**helper method for creating the table buttons **/			
-		
+/**helper method for creating the table buttons 		
+	@param location_div = the div to put the result into
+**/	
+			
 	function displayTableButtons(location_div) {
 		$.ajax({
 			url: 'resources/ajax_includes/table_buttons.php',
@@ -193,7 +216,10 @@ $(document).ready(function() {
 		});
 	}
 	
-/**helper method for creating the problem stream relative to parameters terms box**/			
+/**helper method for creating the problem stream relative to parameters terms box
+	@param params = the parameters to search the DB for
+	@param location_div = the div to put the result into
+**/					
 		
 	function displayProblemsParams(params, location_div) {
 		$.ajax({
@@ -202,17 +228,21 @@ $(document).ready(function() {
 			data: {params: params},
 			success:function(response){ 
 					$(location_div).html(response);
+					console.log(response);
 					},
 				error:function(response){alert("Error Displaying Problems." + response)},
 		}).done(function() {
 			var problem_outputs = [];
-			$(location_div + " table tbody").children().each(function() {
-				problem_outputs.push(this);
+			$(location_div).children().each(function() {
+				$(this).removeClass('hidden');
 			});
-			fadeAllIn(problem_outputs);
 		});
 	}
-/**helper method for taking out each element in an array and recursively fading them in **/
+	
+/**helper method for taking out each element in an array and recursively fading them in 
+	@param link = the link to go to
+	@param location_div = the div to put the result into
+**/		
 
 	function loadProblems(display_location, finder) {	
 		var problem_outputs = new Array();
@@ -228,10 +258,9 @@ $(document).ready(function() {
 /**helper method for taking out each element in an array and recursively fading them in **/
 
 	function fadeAllIn(children) {
-		location.reload(true);
 		var current = children.shift();
 		$(current).fadeIn(1000, function() {
-			fadeAllIn(children)
+			fadeAllIn(children);
 		});
 	}
 	
@@ -313,7 +342,8 @@ function ProblemStream(location_div) {
 		//showAllProblems(bind_events(this.location_div + " table tbody"));
 	};
 
-this.alternate_main = function(){
+this.alternate_main = function(IP){
+	this.user_IP = IP;
 	$(this.location_div).html(this.displayProblems());
 	showAllProblems();
 	
@@ -346,15 +376,22 @@ this.alternate_main = function(){
 		
 	this.displayProblems = function() {
 		var url = this.display_link;
+		var IP = this.user_IP;
+		console.log(IP);
 		var data;
 		$.ajax({
-				url:url,
+				url: url,
+				type: "POST",
 				async: false,
+				data: {IP: IP},
 				success:function(response){ 
 					data = response;
-					},
-				error:function(response){alert("Error Displaying Problems: " + response)},
+				},
+				error:function(response){
+					alert("Error Displaying Problems: " + response)
+					}
 			}).done(function() {
+			
 			});
 		return data; 
 	};

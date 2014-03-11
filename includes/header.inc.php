@@ -26,7 +26,7 @@ $value_text = '';
 
 ?>
 
-<!-- The Internet Way -->
+<!-- Sources: The Internet Way -->
 <!--
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
@@ -34,10 +34,10 @@ $value_text = '';
 <script type="text/javascript" src="http://www.google.com/jsapi"></script> 
 -->
 
-<!-- The MAMP Way -->
+<!-- Sources: The Local Way -->
 <script src="resources/js/google-ajax.min.js" type="text/javascript"></script>
 <script src="resources/js/google-ajax-10.min.js" type="text/javascript"></script>
-<script src="resources/js/jquery-ur.min.js" type="text/javascript"></script>
+<script src="resources/js/jquery-ui.min.js" type="text/javascript"></script>
 <script src="resources/js/google-js-api.min.js" type="text/javascript"></script>
 <script src="http://www.google.com/jsapi" type="text/javascript"></script> 
 <script src='resources/js/bootstrap.min.js'></script>
@@ -57,36 +57,34 @@ $value_text = '';
 			<div class="col-lg-12">
 		
 				<div class="fb-like" data-href="http://www.patrickkeaveny.com/MyProblem" data-send="true" data-width="450" data-show-faces="true"></div><!--.fb-like-->
+				<?php if ($problem) { ?>
+					
+					<div id="problem-header">
+						<h1>
+							<?php
+								for ($i=0; $i< (count($problem_tags)); $i++) {
+									echo "<a href='.?problem=$problem_tags[$i]'>" . $problem_tags_array[$i] . "</a>, ";
+									$value_text = $value_text . $problem_tags_array[$i] . ' ';
+								} ?>
+							<h3> <a href=".?q=true">See All</a></h3>
+						</h1>
+					</div><!--problem-header-->
+						
+				<?php } ?>
 				
-				<div id="problem" >
-			
-					<?php if (!$problem) { ?>
-				
+					<div id="problem" >
+
 						<br />
 						<input type="text" name="problem-input" id="problem-input" />
 							<div class="red-alert">This field can not be empty</div><!--/.red-alert-->
 						<br />
-				
+			
 						<form id="anonymous-check"> 
-							<input type="button" name="anonymous" value="anonymous" id="anonymous" data-toggle="modal" data-target="#modal-media"> 
+							<input type="checkbox" name="anonymous" value="anonymous" id="anonymous" data-toggle="modal" data-target="#modal-media"> 
 							<label for="anonymous">Remain Anonymous</label>	
 						</form><!--checkbox-->		
 						<br />
 						
-					<?php } else { ?>
-						<div id="problem-header">
-							<h1>
-								<?php
-									for ($i=0; $i< (count($problem_tags)); $i++) {
-										echo "<a href='.?problem=$problem_tags[$i]'>" . $problem_tags_array[$i] . "</a>, ";
-										$value_text = $value_text . $problem_tags_array[$i] . ' ';
-									} ?>
-								<h3> <a href=".?q=true">See All</a></h3>
-							</h1>
-						</div>
-						<input type="text" name="problem-input" id="problem-input" value="<?php echo $value_text ?>"/>
-					<?php } ?>
-			
 					<button name="submit-problem" id="submit-problem">Submit</button>
 			
 				</div><!--/#problem-->

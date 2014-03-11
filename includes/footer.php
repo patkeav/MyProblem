@@ -30,9 +30,9 @@
 						<br />
 						<form class="form-inline" id="email-form">
 							<div class="form-group input-group-lg">
-								<input type="text" name="email-address1" id="email-address" placeholder="email" class="form-control" /><!--email-address-->
-								<label for="email-address1">@</label>
-								<input type="text" name="email-address2" id="email-address" placeholder="address" class="form-control" />
+								<input type="text" name="email-address1" id="email-address1" placeholder="email" class="form-control" /><!--email-address-->
+								<label for="email-address1">@</label> 
+								<input type="text" name="email-address2" id="email-address2" placeholder="address" class="form-control" />
 								<label for="email-address2">.com</label>
 							</div><!--/.input-group input-group-lg-->
 						</form>
@@ -58,14 +58,31 @@
 						
 					</div><!--modal-body-->
 					<div class="modal-footer"> 
+						<!-- The below form needs to be thought through before i put it in 
 						<form id="anonymous-check"> 
 							<input type="checkbox" name="anonymous-remain" value="Use info, but remain anonymous" id="anonymous" > 
 							<label for="anonymous-remain">Use my information, but remain anonymous</label>	
-						</form><!--checkbox-->	 
-						<!--<a href="#" class="btn btn-success">Call to action</a> -->
-						<a href="#" id="media-modal-dismiss" class="btn btn-danger" data-dismiss="modal">Close</a>  
+						</form>
+						-->	 
+						<a href="#" id="media-modal-nevermind" class="btn btn-danger" data-dismiss="modal">Eh, nevermind.</a> 
+						<a href="#" id="media-modal-dismiss" class="btn btn-danger" data-dismiss="modal">Submit</a>  
 					</div><!--/modal-footer--> 
-				</div><!--/modal-content-->
+				</div><!--/modal-content--> 
+			</div><!--/modal-dialog--> 
+		</div><!--/#modal-media--> 
+				
+		<!--modal for specific problem detail, courtesy of Twitter Bootstrap-->
+		<div class="modal fade" id="detail-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">  
+						<h4 class="modal-title">Specific Details for this problem:</h4>
+					</div><!--/modal-header--> 
+					<div class="modal-body"></div><!--modal-body-->
+					<div class="modal-footer"> 
+						<a href="#" id="media-modal-nevermind" class="btn btn-danger" data-dismiss="modal">Close</a> 
+					</div><!--/modal-footer--> 
+				</div><!--/modal-content--> 
 			</div><!--/modal-dialog--> 
 		</div><!--/#modal-media--> 		
 		
@@ -75,6 +92,7 @@
 		<input type="hidden" name="last_entry" id="last_entry" value="" />
 		<input type="hidden" name="problem_param" id="problem_param" value="<?php echo $problem; ?>" />
 		<input type="hidden" name="q" id="q" value="<?php echo $q; ?>" />
+		
 
 	</body><!--/.container-fluid-->
 </html>

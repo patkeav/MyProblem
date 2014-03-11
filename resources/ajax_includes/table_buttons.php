@@ -36,6 +36,17 @@
 	<?php } ?>
 </select>
 <br />
+<select id="option-year">
+	<?php 
+		$years = array(
+		'2013',
+		'2014'
+		);
+	for ($i=0;$i<count($months);$i++) { ?>
+	<option value="<?php echo $years[$i]; ?>"><?php echo $years[$i]; ?></option>
+	<?php } ?>
+</select>
+<br />
 <input type="button" value="Go" id="specific-date" />
 <br />
 
