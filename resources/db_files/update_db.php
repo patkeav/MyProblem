@@ -59,21 +59,12 @@ function cleanAndSanitize($input) {
     return $output;
 }
 
-$query_default = 'SELECT * FROM `Problem_beta`  
-					ORDER BY Date DESC;';
-$query_result = $con->prepare($query_default);
-$query_result->execute();	
-			
-$num_rows = $query_result->rowCount();
-$new_index = $num_rows + 1;
-
 //prepares a sql statement to be inserted into the DB (protection from sql injection)    
-$query_result = $con->prepare('INSERT INTO `Problem_beta`(c1, Problem, keywords, twitter_handle, email_address, IP, unique_id) 
+$query_result = $con->prepare('INSERT INTO `Problem_beta`(Problem, keywords, twitter_handle, email_address, IP, unique_id) 
 									VALUES(:new_index, :problem, :key_words, :twitter, :email, :IP, :unique)');
 			
 //executes sql statement
 $query_array = array(
-			'new_index' => $new_index,
 			'problem' => $problem,
 			'key_words' => $tags,
 			'twitter' => $twitter,

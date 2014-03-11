@@ -1,4 +1,4 @@
-<?php /** Checks the Database for entries based on input parameters **/
+<?php /** Gets entries from the Database based on input parameters **/
 
 $params = $_POST["params"];
 

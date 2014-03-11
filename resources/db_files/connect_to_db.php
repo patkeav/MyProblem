@@ -1,5 +1,5 @@
-<?php
-/** Connects to Database **/
+<?php /** Connects to Database **/
+
 $host = 'localhost';
 $db = 'patrickk_test';
 $username = 'patrickk_k2';
@@ -16,7 +16,6 @@ catch (PDOException $e) {
 	echo "Failed: " . $e->getMessage();
 }
 */
-
 
 // Using MAMP
 try {

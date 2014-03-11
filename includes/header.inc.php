@@ -73,7 +73,6 @@ $value_text = '';
 				<?php } ?>
 				
 					<div id="problem" >
-
 						<br />
 						<input type="text" name="problem-input" id="problem-input" />
 							<div class="red-alert">This field can not be empty</div><!--/.red-alert-->
@@ -83,12 +82,12 @@ $value_text = '';
 							<input type="checkbox" name="anonymous" value="anonymous" id="anonymous" data-toggle="modal" data-target="#modal-media"> 
 							<label for="anonymous">Remain Anonymous</label>	
 						</form><!--checkbox-->		
-						<br />
-						
+						<br />	
 					<button name="submit-problem" id="submit-problem">Submit</button>
-			
 				</div><!--/#problem-->
+				
 				<hr>
+				
 			</div><!--/.col-lg-12-->
 		</div><!--/#header.row-fluid-->
 		<br />

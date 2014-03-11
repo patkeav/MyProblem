@@ -1,8 +1,8 @@
 <?php /** Displays the entries from the Database **/
+
 include('../db_files/connect_to_db.php'); 
 
 $user_IP = $_POST["IP"];
-
 
 //checks to see if the display problems request came with parameters
 if ($query_params) {
@@ -36,8 +36,6 @@ $months = array(
 	12 => 'november',
 	12 => 'december',
 );
-
-// data table 
 	
 //fetches data from individual rows in the query 
 		

@@ -1,5 +1,4 @@
-<?php
-// This file is the template for the problem detail
+<?php /** This file is the template for the problem detail **/ 
 
 $problem = $_GET["problem"];
 $date = $_GET["date"];

@@ -2,7 +2,9 @@
 ?>
 <h4>See Problems From:</h4>
 <br />
+
 <hr>
+
 <button class="today">Today</button>
 <button class="this-week">This Week</button>
 <button class="this-month">This Month</button>

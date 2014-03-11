@@ -1,5 +1,5 @@
-$(document).on("click", "#main-table a#dummy-link.problem-detail-link", function(event) {
-		
+// for events loaded outside of the DOM: 
+$(document).on("click", "#main-table a#dummy-link.problem-detail-link", function(event) {	
 		event.preventDefault();
 		var url = $(this).attr('data');
 		url = "resources/ajax_includes/" + url;
@@ -25,11 +25,11 @@ $(document).on("click", "#main-table a#dummy-link.problem-detail-link", function
 		alert(specific_date);
 		getNearest(specific_date, "#display-problems table td");
 	});
-	
+
+// for events loaded within the DOM:	
 $(document).ready(function() {
 	var user_problem;
 	var user_IP = $("#ip-address").val();
-	console.log("user IP is " + user_IP);
 	var user_twitter;
 	var user_email; 
 	var display_location = "table tbody#main-table";
@@ -40,12 +40,6 @@ $(document).ready(function() {
 		event.preventDefault()
 		showHide(this, "Have a problem?", "#problem");
 	});
-	
-
-		//alert('yep');
-		//var url = $(this).attr('data');
-		//alert(url)
-	//});
 	
 	if ($("#problem_param").val()) {
 		var user_problem = $('#problem_param').val();
@@ -65,8 +59,6 @@ $(document).ready(function() {
 		
 		displayTableButtons(buttons_div);
 		
-
-	
 	//check if the anonymous button is selected
 	$('#anonymous').change(function() {
 		//if it has, create the social media buttons 

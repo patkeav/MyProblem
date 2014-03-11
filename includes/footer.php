@@ -96,7 +96,6 @@
 		<input type="hidden" name="problem_param" id="problem_param" value="<?php echo $problem; ?>" />
 		<input type="hidden" name="q" id="q" value="<?php echo $q; ?>" />
 		
-
 	</body><!--/.container-fluid-->
 </html>
 
