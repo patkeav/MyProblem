@@ -1,30 +1,3 @@
-// for events loaded outside of the DOM: 
-$(document).on("click", "#main-table a#dummy-link.problem-detail-link", function(event) {	
-		event.preventDefault();
-		var url = $(this).attr('data');
-		url = "resources/ajax_includes/" + url;
-		displayProblemDetail(url, "#detail-modal .modal-body");
-	});
-	var option_day;
-	var option_month;
-	var option_year;
-	$(document).on("change", "option", function() {
-		alert('clicked');
-		option_day = ($(this).attr('value'));
-	});
-	$(document).on("change", "#option-month option", function() {
-		option_month = ($(this).attr('value'));
-	});
-	$(document).on("change", "#option-year option", function() {
-		option_year = ($(this).attr('value'));
-		alert(option_year);
-	});
-	
-	$(document).on("click", "#specific-date", function() {
-		var specific_date = '.' + option_month + '-' + option_day + '-' + option_year;
-		alert(specific_date);
-		getNearest(specific_date, "#display-problems table td");
-	});
 
 // for events loaded within the DOM:	
 $(document).ready(function() {
@@ -49,7 +22,6 @@ $(document).ready(function() {
 		$("#last_entry").val(last_entry.html());
 
 		displayTableButtons(buttons_div);
-		
 	}
 	
 		p2 = new ProblemStream(display_location);
@@ -118,14 +90,10 @@ $(document).ready(function() {
 	var last_entry_location = display_location + " table tbody";
 	var last_entry_time = $("#last_entry").val();
 	
-	//there's a bug currently, where the table is sometimes displayed without the most recent entry
-	//will have to fix later, but i can't figure it out at the moment, so this is a quick fix
-		
-	
 		//check the DB every 15 seconds to see if there's a new entry
-		setInterval(function() {
-				checkDB(display_location, last_entry_time); 
-			}, 15000);
+	setInterval(function() {
+		checkDB(display_location, last_entry_time); 
+		}, 15000);
 	$('#problem-input').keyup(function(event) {
 		if (event.keyCode == 13) {
 			$('#submit-problem').click();
@@ -140,6 +108,31 @@ $(document).ready(function() {
 		getNearest(button_class, "#display-problems table td");
 	});
 });
+
+// for events loaded outside of the DOM: 
+$(document).on("click", "#main-table a#dummy-link.problem-detail-link", function(event) {	
+	event.preventDefault();
+	var url = $(this).attr('data');
+	url = "resources/ajax_includes/" + url;
+	displayProblemDetail(url, "#detail-modal .modal-body");
+});
+var option_day;
+var option_month;
+var option_year;
+$(document).on("change", "option", function() {
+	option_day = ($(this).attr('value'));
+});
+$(document).on("change", "#option-month option", function() {
+	option_month = ($(this).attr('value'));
+});
+$(document).on("change", "#option-year option", function() {
+	option_year = ($(this).attr('value'));
+});
+$(document).on("click", "#specific-date", function() {
+	var specific_date = '.' + option_month + '-' + option_day + '-' + option_year;
+	getNearest(specific_date, "#display-problems table td");
+});
+
 
 /**helper method for handling click events and showing/hiding elements
 	@param input = the element value
@@ -358,8 +351,6 @@ this.alternate_main = function(IP){
 				error:function(response){
 					alert("Error updating Database: " + response);
 					}
-			}).done(function() {
-				
 			});
 	};
 	
@@ -381,8 +372,6 @@ this.alternate_main = function(IP){
 				error:function(response){
 					alert("Error Displaying Problems: " + response)
 					}
-			}).done(function() {
-			
 			});
 		return data; 
 	};
@@ -424,7 +413,7 @@ this.alternate_main = function(IP){
 
 	function fadeInAllProblemsFast(children) {
 		var current = children.shift();
-		$(current).fadeIn(1000, function() {
+		$(current).fadeIn(100, function() {
 			fadeInAllProblemsFast(children)
 		});
 	}
@@ -453,13 +442,6 @@ this.alternate_main = function(IP){
 		$('tr').removeClass('hidden');
 	}
 	
-	/**old function, may have to delete later:
-	
-		var current = children.shift();
-		$(current).show(function() {
-			displayAllProblems(children)
-		});
-	**/
 } // end ProblemStream object
 
 /**Complex object for social media buttons 
