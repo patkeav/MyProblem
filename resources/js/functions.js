@@ -10,12 +10,12 @@ $(document).ready(function() {
 	var buttons_div = "#problem-buttons";
 	 
 	$("#main-button").click(function(event) { 
-		event.preventDefault()
+		event.preventDefault();
 		showHide(this, "Have a problem?", "#problem");
 	});
 	
 	if ($("#problem_param").val()) {
-		var user_problem = $('#problem_param').val();
+		user_problem = $('#problem_param').val();
 	
 		displayProblemsParams(user_problem, display_location); 
 		var last_entry = $(display_location + " table tbody tr td.time-stamp").first(); 
@@ -40,13 +40,13 @@ $(document).ready(function() {
 			$('#id-form').removeClass('hidden');
 			//if facebook link is clicked
 			$('#facebook-link').click(function(event) { 
-				event.preventDefault()
+				event.preventDefault();
 				// create FB button
 				s1.facebookButton();
 			});
 			//if Tumblr link is clicked
 			$('#tumblr-link').click(function(event) { 
-				event.preventDefault()
+				event.preventDefault();
 				// check if Tumblr field is empty
 				if (checkField($('#tumblr-name').attr('id'))) {
 					var blogname = $('#tumblr-name').val();
@@ -58,7 +58,7 @@ $(document).ready(function() {
 
 // the main code block that handles the problem output, and all necessary function calls
 	$('#submit-problem').click(function(event) { 
-		event.preventDefault()
+		event.preventDefault();
 	
 	// make sure the field isn't empty
 		if (checkField($('#problem-input').attr('id'))) {
@@ -210,11 +210,11 @@ $(document).on("click", "#specific-date", function() {
 			url: 'resources/db_files/query_db_params.php',
 			type: 'POST',
 			data: {params: params},
-			success:function(response){ 
+			success: function(response){ 
 					$(location_div).html(response);
 					console.log(response);
 					},
-				error:function(response){alert("Error Displaying Problems." + response)},
+			error: function(response){alert("Error Displaying Problems." + response);}
 		}).done(function() {
 			var problem_outputs = [];
 			$(location_div).children().each(function() {
@@ -229,7 +229,7 @@ $(document).on("click", "#specific-date", function() {
 **/		
 
 	function loadProblems(display_location, finder) {	
-		var problem_outputs = new Array();
+		var problem_outputs = [];
 		$(display_location).on("find", function(finder) {
 			$(finder).children().each(function() {
 				problem_outputs.push(this);	
@@ -290,9 +290,9 @@ $(document).on("click", "#specific-date", function() {
 			success: function(response) {
 				alert(response);
 			},
-			error:function(response){
-						alert("Error Deleting Row " + response);
-						}
+			error: function(response){
+				alert("Error Deleting Row " + response);
+			}
 		}).done(function() {
 			p2 = new ProblemStream("table tbody#main-table");
 			p2.alternate_main(); 
@@ -310,7 +310,7 @@ function ProblemStream(location_div) {
 	this.location_div = location_div;
 	this.update_link = "resources/db_files/update_db.php";
 	this.display_link = "resources/ajax_includes/display_problems.php";
-	this.elements = new Array();
+	this.elements = [];
 
 //the main method	
 	this.main = function(problem, IP, twitter, email) {
@@ -370,15 +370,15 @@ this.alternate_main = function(IP){
 					data = response;
 				},
 				error:function(response){
-					alert("Error Displaying Problems: " + response)
-					}
+					alert("Error Displaying Problems: " + response);
+				}
 			});
 		return data; 
 	};
 		
 	/** function for binding elements together, with some help from stackoverflow user "face". Thanks buddy!**/	
 	function bind_events(data) {
-		var elements_array = new Array();
+		var elements_array = [];
 		$(data).children().each(function() {
 			elements_array.push(this);
 		});
@@ -414,7 +414,7 @@ this.alternate_main = function(IP){
 	function fadeInAllProblemsFast(children) {
 		var current = children.shift();
 		$(current).fadeIn(100, function() {
-			fadeInAllProblemsFast(children)
+			fadeInAllProblemsFast(children);
 		});
 	}
 	
@@ -423,7 +423,7 @@ this.alternate_main = function(IP){
 	function fadeInAllProblemsMedium(children) {
 		var current = children.shift();
 		$(current).fadeIn(1000, function() {
-			fadeInAllProblemsMedium(children)
+			fadeInAllProblemsMedium(children);
 		});
 	}
 	
@@ -432,7 +432,7 @@ this.alternate_main = function(IP){
 	function fadeInAllProblemsSlow(children) {
 		var current = children.shift();
 		$(current).fadeIn(5000, function() {
-			fadeInAllProblemsSlow(children)
+			fadeInAllProblemsSlow(children);
 		});
 	}
 	
@@ -505,3 +505,7 @@ function SocialMedia(problem) {
 		});
 	};
 } // end SocialMedia Object
+
+QUnit.test( "hello test", function( assert ) {
+assert.ok( 1 == "1", "Passed!" );
+});

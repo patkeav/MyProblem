@@ -1,7 +1,8 @@
 <?php /** The main index page **/ 
 
 include('includes/header.inc.php'); ?>
-	
+	 <div id="qunit"></div>
+<div id="qunit-fixture"></div>
 	<div id="main" class="row">
 			<div id="display-problems" class="col-lg-12" >
 				<div class=" button-group" id="problem-buttons"></div><!--extra features will be loaded here via AJAX --> 

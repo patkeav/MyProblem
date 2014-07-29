@@ -41,11 +41,13 @@ $value_text = '';
 <script src="resources/js/google-js-api.min.js" type="text/javascript"></script>
 <script src="http://www.google.com/jsapi" type="text/javascript"></script> 
 <script src='resources/js/bootstrap.min.js'></script>
+<script src='resources/js/qunit-1.14.0.js'></script>
 
 <html>
 	<head>
 		<link href="resources/css/style.css" rel="stylesheet" type="text/css" />
 		<link href='resources/css/bootstrap/css/bootstrap.css' rel='stylesheet' />
+		<link href='resources/css/bootstrap/css/qunit-1.14.0.css' rel='stylesheet' />
 		<link href='resources/css/bootstrap/css/bootstrap-theme.min.css' rel='stylesheet' />
 		<title> My Problem </title>
 	</head>
